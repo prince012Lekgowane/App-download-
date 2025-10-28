@@ -261,6 +261,13 @@
             border: 1px solid rgba(135, 206, 250, 0.2);
         }
 
+        .app-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         .app-image::before {
             content: '';
             position: absolute;
@@ -491,12 +498,12 @@
         <div class="logo-container">
             <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/batau.jpg?alt=media&token=16c7c792-27d4-428d-8bad-97a2b5bbc601" alt="Logo" class="logo" onerror="this.style.display='none'">
         </div>
-        <h1>🚀 Get INSTANT Access NOW</h1>
+        <h1>Get INSTANT Access NOW</h1>
         <p>Join our early access program and start using innovative apps today!</p>
     </div>
 
     <div class="registration-section">
-        <h2>⚡ 1-Click Registration</h2>
+        <h2>1-Click Registration</h2>
         <p>Enter your Play Store email to get instant access to all apps.<br>
         <small>Note: You must join our Google Group to complete registration and download apps.</small></p>
         <form class="email-form" id="emailForm">
@@ -506,119 +513,111 @@
         <div class="status-message" id="statusMessage"></div>
     </div>
 
+    <!-- FIXED: Only ONE .apps-container, all cards are direct children -->
     <div class="apps-container" id="appsContainer">
 
-        <div class="apps-container" id="appsContainer">
-    <!-- TlofTlof -->
-    <div class="app-card">
-        <div class="app-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/59927(3).png?alt=media&token=1724207b-3304-4602-912d-aa7f3266b81a" alt="ZenithAI" onerror="this.style.display='none'; this.parentElement.innerHTML='[Phone]'">
-        </div>
-        <div class="app-name">TlofTlof</div>
-        <div class="app-description">TlofTlof is revolutionizing casual connections in South Africa. Swipe, match, join tonight's plans, and earn money through ads just by using the app. Your perfect connection is just a swipe away! </div>
-        <div class="app-buttons">
-            <button class="btn btn-download" data-app="zenith" data-store-link="https://play.google.com/store/apps/details?id=com.batau.tloftlof">
-                Download
-            </button>
-            <a href="https://tlofapp.vercel.app/" class="btn btn-website" target="_blank">Website</a>
-        </div>
-    </div>
-
-    <!-- TaskFlow Pro -->
-    <div class="app-card">
-        <div class="app-image">
-            <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/unnamed.png?alt=media&token=5f09deed-05e6-4d22-98dc-4762253218de" alt="TaskFlow Pro" onerror="this.style.display='none'; this.parentElement.innerHTML='[Briefcase]'">
-        </div>
-        <div class="app-name">SparkSync</div>
-        <div class="app-description">SparkSync is revolutionizing dating in South Africa. Swipe, match, join local events, and earn 50% of ad revenue just by using the app. Your perfect match is just a swipe away! </div>
-        <div class="app-buttons">
-            <button class="btn btn-download" data-app="taskflow" data-store-link="https://play.google.com/store/apps/details?id=com.batau.spark">
-                Download
-            </button>
-            <a href="https://sparksync.vercel.app/" class="btn btn-website" target="_blank">Website</a>
-        </div>
-    </div>
-
-   
-
-        
+        <!-- TlofTlof -->
         <div class="app-card">
-            <div class="app-image">📱</div>
+            <div class="app-image">
+                <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/59927(3).png?alt=media&token=1724207b-3304-4602-912d-aa7f3266b81a" alt="TlofTlof" onerror="this.style.display='none'; this.parentElement.innerHTML='[Phone]'">
+            </div>
+            <div class="app-name">TlofTlof</div>
+            <div class="app-description">TlofTlof is revolutionizing casual connections in South Africa. Swipe, match, join tonight's plans, and earn money through ads just by using the app. Your perfect connection is just a swipe away!</div>
+            <div class="app-buttons">
+                <button class="btn btn-download" data-app="tloftlof" data-store-link="https://play.google.com/store/apps/details?id=com.batau.tloftlof">
+                    Download
+                </button>
+                <a href="https://tlofapp.vercel.app/" class="btn btn-website" target="_blank">Website</a>
+            </div>
+        </div>
+
+        <!-- SparkSync -->
+        <div class="app-card">
+            <div class="app-image">
+                <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/unnamed.png?alt=media&token=5f09deed-05e6-4d22-98dc-4762253218de" alt="SparkSync" onerror="this.style.display='none'; this.parentElement.innerHTML='[Briefcase]'">
+            </div>
+            <div class="app-name">SparkSync</div>
+            <div class="app-description">SparkSync is revolutionizing dating in South Africa. Swipe, match, join local events, and earn 50% of ad revenue just by using the app. Your perfect match is just a swipe away!</div>
+            <div class="app-buttons">
+                <button class="btn btn-download" data-app="spark" data-store-link="https://play.google.com/store/apps/details?id=com.batau.spark">
+                    Download
+                </button>
+                <a href="https://sparksync.vercel.app/" class="btn btn-website" target="_blank">Website</a>
+            </div>
+        </div>
+
+        <!-- ZenithAI -->
+        <div class="app-card">
+            <div class="app-image">[Phone]</div>
             <div class="app-name">ZenithAI</div>
             <div class="app-description">Discover the power of AI-driven insights with ZenithAI. Get intelligent recommendations and automate your daily tasks.</div>
             <div class="app-buttons">
                 <button class="btn btn-download" data-app="zenith" data-store-link="https://play.google.com/store/apps/details?id=com.example.zenith">
                     Download
                 </button>
-                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+                <a href="#" class="btn btn-website" target="_blank">Website</a>
             </div>
         </div>
 
+        <!-- TaskFlow Pro -->
         <div class="app-card">
-            <div class="app-image">💼</div>
+            <div class="app-image">[Briefcase]</div>
             <div class="app-name">TaskFlow Pro</div>
             <div class="app-description">Experience seamless task management with intuitive workflows. Boost your productivity and organize your life.</div>
             <div class="app-buttons">
                 <button class="btn btn-download" data-app="taskflow" data-store-link="https://play.google.com/store/apps/details?id=com.example.taskflow">
                     Download
                 </button>
-                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+                <a href="#" class="btn btn-website" target="_blank">Website</a>
             </div>
         </div>
 
+        <!-- KushKart -->
         <div class="app-card">
-            <div class="app-image">🛒</div>
+            <div class="app-image">[Shopping Cart]</div>
             <div class="app-name">KushKart</div>
             <div class="app-description">Shop effortlessly with KushKart's intuitive platform. Discover deals, track orders, and enjoy a premium shopping experience.</div>
             <div class="app-buttons">
                 <button class="btn btn-download" data-app="kushkart" data-store-link="https://play.google.com/store/apps/details?id=com.example.kushkart">
                     Download
                 </button>
-                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+                <a href="#" class="btn btn-website" target="_blank">Website</a>
             </div>
         </div>
 
+        <!-- NoesiE -->
         <div class="app-card">
-            <div class="app-image">🍜</div>
+            <div class="app-image">[Noodles]</div>
             <div class="app-name">NoesiE</div>
             <div class="app-description">Unlock knowledge and insights with Noesie. Your personal learning companion for growth and discovery.</div>
             <div class="app-buttons">
                 <button class="btn btn-download" data-app="noesie" data-store-link="https://play.google.com/store/apps/details?id=com.example.noesie">
                     Download
                 </button>
-                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+                <a href="#" class="btn btn-website" target="_blank">Website</a>
             </div>
         </div>
 
+        <!-- SparkSync (duplicate removed) -->
+        <!-- EaziHail -->
         <div class="app-card">
-            <div class="app-image">🔗</div>
-            <div class="app-name">SparkSync</div>
-            <div class="app-description">Sync your world with SparkSync's connectivity tools. Seamlessly connect, share, and collaborate across devices.</div>
-            <div class="app-buttons">
-                <button class="btn btn-download" data-app="sparksync" data-store-link="https://play.google.com/store/apps/details?id=com.example.sparksync">
-                    Download
-                </button>
-                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
-            </div>
-        </div>
-
-        <div class="app-card">
-            <div class="app-image">🚕</div>
+            <div class="app-image">[Taxi]</div>
             <div class="app-name">EaziHail</div>
             <div class="app-description">Hail rides with ease using EaziHail's platform. Quick, reliable, and convenient transportation at your fingertips.</div>
             <div class="app-buttons">
                 <button class="btn btn-download" data-app="eazihail" data-store-link="https://play.google.com/store/apps/details?id=com.example.eazihail">
                     Download
                 </button>
-                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+                <a href="#" class="btn btn-website" target="_blank">Website</a>
             </div>
         </div>
+
     </div>
 
     <!-- Popup Modal -->
     <div id="downloadModal" class="modal">
         <div class="modal-content">
-            <h3>⚠️ Join Group First</h3>
+            <h3>Join Group First</h3>
             <p>The app won’t be accessible to you without joining the group using your <strong>Play Store email</strong>.</p>
             <div class="modal-buttons">
                 <button class="modal-btn cancel" id="cancelDownload">Cancel</button>
@@ -643,7 +642,7 @@
                 document.getElementById('emailInput').value = userEmail;
                 document.getElementById('submitBtn').textContent = 'Registered ✓';
                 document.getElementById('submitBtn').style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
-                showStatus(`✅ Registered with ${userEmail}`, 'success');
+                showStatus(`Registered with ${userEmail}`, 'success');
             }
         });
 
@@ -654,7 +653,7 @@
             const submitBtn = document.getElementById('submitBtn');
 
             if (!email || !email.includes('@')) {
-                showStatus('❌ Please enter a valid email', 'error');
+                showStatus('Please enter a valid email', 'error');
                 return;
             }
 
@@ -669,7 +668,7 @@
             submitBtn.textContent = 'Registered ✓';
             submitBtn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
             submitBtn.disabled = true;
-            showStatus(`✅ Opened group. Join with <strong>${email}</strong> to access apps.`, 'success');
+            showStatus(`Opened group. Join with <strong>${email}</strong> to access apps.`, 'success');
         });
 
         // Download Button → Show Modal
