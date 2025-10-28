@@ -315,21 +315,9 @@
             box-shadow: 0 5px 15px rgba(87, 144, 255, 0.4);
         }
 
-        .btn-download:hover:not(.disabled) {
+        .btn-download:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(87, 144, 255, 0.6);
-        }
-
-        .btn-download.disabled {
-            background: linear-gradient(135deg, #2a3550 0%, #1a1f3a 100%);
-            cursor: not-allowed;
-            opacity: 0.6;
-            border: 1px solid rgba(135, 206, 250, 0.3);
-        }
-
-        .btn-download.disabled:hover {
-            transform: none;
-            box-shadow: 0 5px 15px rgba(87, 144, 255, 0.4);
         }
 
         .btn-website {
@@ -343,10 +331,6 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(135, 206, 250, 0.3);
             border-color: #87CEEB;
-        }
-
-        .locked-icon {
-            font-size: 1.2rem;
         }
 
         footer {
@@ -374,53 +358,100 @@
             text-decoration: underline;
         }
 
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.98) 0%, rgba(42, 53, 80, 0.98) 100%);
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid rgba(135, 206, 250, 0.3);
+            box-shadow: 0 15px 50px rgba(87, 144, 255, 0.4);
+            animation: scaleIn 0.4s ease;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+            color: #87CEEB;
+            font-size: 1.5rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 25px;
+            color: #fff;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn.confirm {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .modal-btn.cancel {
+            background: rgba(135, 206, 250, 0.2);
+            color: #87CEEB;
+            border: 2px solid rgba(135, 206, 250, 0.4);
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes shimmer {
@@ -428,58 +459,37 @@
             100% { transform: translateX(100%); }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-            }
-
-            .header-icon {
-                width: 40px;
-                height: 40px;
-            }
-
-            .business-name {
-                font-size: 1.1rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .logo {
-                width: 100px;
-                height: 100px;
-            }
-
-            .email-form {
-                flex-direction: column;
-            }
-
-            .app-buttons {
-                flex-direction: column;
-            }
-
-            .registration-section {
-                padding: 25px;
-            }
+            .header { padding: 15px 20px; }
+            .header-icon { width: 40px; height: 40px; }
+            .business-name { font-size: 1.1rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.1rem; }
+            .logo { width: 100px; height: 100px; }
+            .email-form { flex-direction: column; }
+            .app-buttons { flex-direction: column; }
+            .registration-section { padding: 25px; }
+            .modal-content { margin: 20% auto; padding: 20px; }
+            .modal-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="header-left">
-            <img src="https://drive.google.com/uc?export=view&id=1hD8uMlB8Bcf8dFmRbaHp6rNPQIkvS7us" alt="Batau Software Dev" class="header-icon" onerror="this.style.display='none'">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/batau.jpg?alt=media&token=16c7c792-27d4-428d-8bad-97a2b5bbc601" alt="Batau Software Dev" class="header-icon" onerror="this.style.display='none'">
             <div class="business-name">Batau Software Dev</div>
         </div>
     </header>
 
     <div class="hero">
         <div class="logo-container">
-            <img src="https://drive.google.com/uc?export=view&id=1hD8uMlB8Bcf8dFmRbaHp6rNPQIkvS7us" alt="Logo" class="logo" onerror="this.style.display='none'">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/batau.jpg?alt=media&token=16c7c792-27d4-428d-8bad-97a2b5bbc601" alt="Logo" class="logo" onerror="this.style.display='none'">
         </div>
         <h1>🚀 Get INSTANT Access NOW</h1>
         <p>Join our early access program and start using innovative apps today!</p>
@@ -497,13 +507,49 @@
     </div>
 
     <div class="apps-container" id="appsContainer">
+
+        <div class="apps-container" id="appsContainer">
+    <!-- TlofTlof -->
+    <div class="app-card">
+        <div class="app-image">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/59927(3).png?alt=media&token=1724207b-3304-4602-912d-aa7f3266b81a" alt="ZenithAI" onerror="this.style.display='none'; this.parentElement.innerHTML='[Phone]'">
+        </div>
+        <div class="app-name">TlofTlof</div>
+        <div class="app-description">TlofTlof is revolutionizing casual connections in South Africa. Swipe, match, join tonight's plans, and earn money through ads just by using the app. Your perfect connection is just a swipe away! </div>
+        <div class="app-buttons">
+            <button class="btn btn-download" data-app="zenith" data-store-link="https://play.google.com/store/apps/details?id=com.batau.tloftlof">
+                Download
+            </button>
+            <a href="https://tlofapp.vercel.app/" class="btn btn-website" target="_blank">Website</a>
+        </div>
+    </div>
+
+    <!-- TaskFlow Pro -->
+    <div class="app-card">
+        <div class="app-image">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flutter-fef59.appspot.com/o/unnamed.png?alt=media&token=5f09deed-05e6-4d22-98dc-4762253218de" alt="TaskFlow Pro" onerror="this.style.display='none'; this.parentElement.innerHTML='[Briefcase]'">
+        </div>
+        <div class="app-name">SparkSync</div>
+        <div class="app-description">SparkSync is revolutionizing dating in South Africa. Swipe, match, join local events, and earn 50% of ad revenue just by using the app. Your perfect match is just a swipe away! </div>
+        <div class="app-buttons">
+            <button class="btn btn-download" data-app="taskflow" data-store-link="https://play.google.com/store/apps/details?id=com.batau.spark">
+                Download
+            </button>
+            <a href="https://sparksync.vercel.app/" class="btn btn-website" target="_blank">Website</a>
+        </div>
+    </div>
+
+    <!-- Add others similarly... -->
+</div>
+
+        
         <div class="app-card">
             <div class="app-image">📱</div>
             <div class="app-name">ZenithAI</div>
             <div class="app-description">Discover the power of AI-driven insights with ZenithAI. Get intelligent recommendations and automate your daily tasks.</div>
             <div class="app-buttons">
-                <button class="btn btn-download disabled" data-app="zenith" data-store-link="#">
-                    <span class="locked-icon">🔒</span> Download
+                <button class="btn btn-download" data-app="zenith" data-store-link="https://play.google.com/store/apps/details?id=com.example.zenith">
+                    Download
                 </button>
                 <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
             </div>
@@ -514,8 +560,8 @@
             <div class="app-name">TaskFlow Pro</div>
             <div class="app-description">Experience seamless task management with intuitive workflows. Boost your productivity and organize your life.</div>
             <div class="app-buttons">
-                <button class="btn btn-download disabled" data-app="taskflow" data-store-link="#">
-                    <span class="locked-icon">🔒</span> Download
+                <button class="btn btn-download" data-app="taskflow" data-store-link="https://play.google.com/store/apps/details?id=com.example.taskflow">
+                    Download
                 </button>
                 <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
             </div>
@@ -526,8 +572,8 @@
             <div class="app-name">KushKart</div>
             <div class="app-description">Shop effortlessly with KushKart's intuitive platform. Discover deals, track orders, and enjoy a premium shopping experience.</div>
             <div class="app-buttons">
-                <button class="btn btn-download disabled" data-app="kushkart" data-store-link="#">
-                    <span class="locked-icon">🔒</span> Download
+                <button class="btn btn-download" data-app="kushkart" data-store-link="https://play.google.com/store/apps/details?id=com.example.kushkart">
+                    Download
                 </button>
                 <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
             </div>
@@ -538,8 +584,8 @@
             <div class="app-name">NoesiE</div>
             <div class="app-description">Unlock knowledge and insights with Noesie. Your personal learning companion for growth and discovery.</div>
             <div class="app-buttons">
-                <button class="btn btn-download disabled" data-app="noesie" data-store-link="#">
-                    <span class="locked-icon">🔒</span> Download
+                <button class="btn btn-download" data-app="noesie" data-store-link="https://play.google.com/store/apps/details?id=com.example.noesie">
+                    Download
                 </button>
                 <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
             </div>
@@ -550,8 +596,8 @@
             <div class="app-name">SparkSync</div>
             <div class="app-description">Sync your world with SparkSync's connectivity tools. Seamlessly connect, share, and collaborate across devices.</div>
             <div class="app-buttons">
-                <button class="btn btn-download disabled" data-app="sparksync" data-store-link="#">
-                    <span class="locked-icon">🔒</span> Download
+                <button class="btn btn-download" data-app="sparksync" data-store-link="https://play.google.com/store/apps/details?id=com.example.sparksync">
+                    Download
                 </button>
                 <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
             </div>
@@ -562,10 +608,22 @@
             <div class="app-name">EaziHail</div>
             <div class="app-description">Hail rides with ease using EaziHail's platform. Quick, reliable, and convenient transportation at your fingertips.</div>
             <div class="app-buttons">
-                <button class="btn btn-download disabled" data-app="eazihail" data-store-link="#">
-                    <span class="locked-icon">🔒</span> Download
+                <button class="btn btn-download" data-app="eazihail" data-store-link="https://play.google.com/store/apps/details?id=com.example.eazihail">
+                    Download
                 </button>
                 <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <h3>⚠️ Join Group First</h3>
+            <p>The app won’t be accessible to you without joining the group using your <strong>Play Store email</strong>.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" id="cancelDownload">Cancel</button>
+                <button class="modal-btn confirm" id="confirmDownload">I Understand → Download</button>
             </div>
         </div>
     </div>
@@ -577,33 +635,82 @@
 
     <script>
         const GROUP_URL = 'https://groups.google.com/g/playstoreearningapps';
+        let pendingDownloadLink = null;
 
-        // Check registration status on page load
-        window.addEventListener('DOMContentLoaded', checkRegistrationStatus);
-
-        function checkRegistrationStatus() {
-            const registered = localStorage.getItem('playstore_registered');
+        // Check registration on load
+        window.addEventListener('DOMContentLoaded', () => {
             const userEmail = localStorage.getItem('playstore_email');
-            
-            if (registered === 'true' && userEmail) {
-                unlockApps();
+            if (userEmail) {
                 document.getElementById('emailInput').value = userEmail;
                 document.getElementById('submitBtn').textContent = 'Registered ✓';
                 document.getElementById('submitBtn').style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
-                showStatus(`✅ You're registered with ${userEmail}. Apps are ready to download!`, 'success');
+                showStatus(`✅ Registered with ${userEmail}`, 'success');
             }
-        }
+        });
 
-        document.getElementById('emailForm').addEventListener('submit', async (e) => {
+        // Register → Open Group in new tab
+        document.getElementById('emailForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            
             const email = document.getElementById('emailInput').value.trim();
             const submitBtn = document.getElementById('submitBtn');
-            
+
             if (!email || !email.includes('@')) {
-                showStatus('❌ Please enter a valid email address', 'error');
+                showStatus('❌ Please enter a valid email', 'error');
                 return;
             }
 
+            // Save email
+            localStorage.setItem('playstore_email', email);
+            localStorage.setItem('playstore_registered', 'true');
+
+            // Open group in new tab
+            window.open(GROUP_URL, '_blank');
+
+            // Update UI
+            submitBtn.textContent = 'Registered ✓';
+            submitBtn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
             submitBtn.disabled = true;
-            submitBtn.textCo
+            showStatus(`✅ Opened group. Join with <strong>${email}</strong> to access apps.`, 'success');
+        });
+
+        // Download Button → Show Modal
+        document.querySelectorAll('.btn-download').forEach(btn => {
+            btn.addEventListener('click', () => {
+                pendingDownloadLink = btn.getAttribute('data-store-link');
+                document.getElementById('downloadModal').style.display = 'block';
+            });
+        });
+
+        // Modal Controls
+        document.getElementById('cancelDownload').addEventListener('click', () => {
+            document.getElementById('downloadModal').style.display = 'none';
+            pendingDownloadLink = null;
+        });
+
+        document.getElementById('confirmDownload').addEventListener('click', () => {
+            if (pendingDownloadLink && pendingDownloadLink !== '#') {
+                window.location.href = pendingDownloadLink;
+            } else {
+                alert('Download link not available.');
+            }
+            document.getElementById('downloadModal').style.display = 'none';
+        });
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('downloadModal');
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                pendingDownloadLink = null;
+            }
+        });
+
+        function showStatus(message, type) {
+            const status = document.getElementById('statusMessage');
+            status.innerHTML = message;
+            status.className = `status-message ${type}`;
+            status.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
