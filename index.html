@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early Access Apps - Join & Download</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #5B6FD8 0%, #7B68D6 30%, #9B6FCE 60%, #B87AC2 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease 0.2s both;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+            opacity: 0.95;
+        }
+
+        .registration-section {
+            max-width: 600px;
+            margin: 0 auto 60px;
+            padding: 35px;
+            background: rgba(91, 111, 216, 0.25);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: scaleIn 0.8s ease 0.4s both;
+        }
+
+        .registration-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .registration-section p {
+            text-align: center;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .email-form input:focus {
+            outline: none;
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .email-form button {
+            padding: 16px 35px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #6B7FE8 0%, #8B6FE0 100%);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(107, 127, 232, 0.4);
+        }
+
+        .email-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(107, 127, 232, 0.5);
+        }
+
+        .email-form button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .status-message {
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+            animation: slideDown 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .status-message.success {
+            background: rgba(76, 175, 80, 0.9);
+            display: block;
+        }
+
+        .status-message.error {
+            background: rgba(244, 67, 54, 0.9);
+            display: block;
+        }
+
+        .status-message.info {
+            background: rgba(91, 111, 216, 0.9);
+            display: block;
+        }
+
+        .apps-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: rgba(91, 111, 216, 0.25);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease both;
+            opacity: 0;
+        }
+
+        .app-card:nth-child(1) { animation-delay: 0.1s; }
+        .app-card:nth-child(2) { animation-delay: 0.2s; }
+        .app-card:nth-child(3) { animation-delay: 0.3s; }
+        .app-card:nth-child(4) { animation-delay: 0.4s; }
+        .app-card:nth-child(5) { animation-delay: 0.5s; }
+        .app-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #6B7FE8 0%, #8B6FE0 50%, #AB70D8 100%);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        .app-name {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .app-description {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #6B7FE8 0%, #8B6FE0 100%);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(107, 127, 232, 0.3);
+        }
+
+        .btn-download:hover:not(.disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(107, 127, 232, 0.5);
+        }
+
+        .btn-download.disabled {
+            background: rgba(139, 111, 224, 0.5);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-download.disabled:hover {
+            transform: none;
+            box-shadow: 0 5px 15px rgba(107, 127, 232, 0.3);
+        }
+
+        .btn-website {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-website:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .locked-icon {
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 100px;
+            }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .app-buttons {
+                flex-direction: column;
+            }
+
+            .registration-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="logo-container">
+            <img src="https://drive.google.com/uc?export=view&id=1hD8uMlB8Bcf8dFmRbaHp6rNPQIkvS7us" alt="Logo" class="logo" onerror="this.style.display='none'">
+        </div>
+        <h1>🚀 Get INSTANT Access NOW</h1>
+        <p>Join our early access program and start using innovative apps today!</p>
+    </div>
+
+    <div class="registration-section">
+        <h2>⚡ 1-Click Registration</h2>
+        <p>Enter your Play Store email to get instant access to all apps.<br>
+        <small>Note: You must join our Google Group to complete registration and download apps.</small></p>
+        <form class="email-form" id="emailForm">
+            <input type="email" id="emailInput" placeholder="Enter your Play Store email" required>
+            <button type="submit" id="submitBtn">Register</button>
+        </form>
+        <div class="status-message" id="statusMessage"></div>
+    </div>
+
+    <div class="apps-container" id="appsContainer">
+        <div class="app-card">
+            <div class="app-image">📱</div>
+            <div class="app-name">ZenithAI</div>
+            <div class="app-description">Discover the power of AI-driven insights with ZenithAI. Get intelligent recommendations and automate your daily tasks.</div>
+            <div class="app-buttons">
+                <button class="btn btn-download disabled" data-app="zenith" data-store-link="#">
+                    <span class="locked-icon">🔒</span> Download
+                </button>
+                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-image">💼</div>
+            <div class="app-name">TaskFlow Pro</div>
+            <div class="app-description">Experience seamless task management with intuitive workflows. Boost your productivity and organize your life.</div>
+            <div class="app-buttons">
+                <button class="btn btn-download disabled" data-app="taskflow" data-store-link="#">
+                    <span class="locked-icon">🔒</span> Download
+                </button>
+                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-image">🛒</div>
+            <div class="app-name">KushKart</div>
+            <div class="app-description">Shop effortlessly with KushKart's intuitive platform. Discover deals, track orders, and enjoy a premium shopping experience.</div>
+            <div class="app-buttons">
+                <button class="btn btn-download disabled" data-app="kushkart" data-store-link="#">
+                    <span class="locked-icon">🔒</span> Download
+                </button>
+                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-image">🍜</div>
+            <div class="app-name">NoesiE</div>
+            <div class="app-description">Unlock knowledge and insights with Noesie. Your personal learning companion for growth and discovery.</div>
+            <div class="app-buttons">
+                <button class="btn btn-download disabled" data-app="noesie" data-store-link="#">
+                    <span class="locked-icon">🔒</span> Download
+                </button>
+                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-image">🔗</div>
+            <div class="app-name">SparkSync</div>
+            <div class="app-description">Sync your world with SparkSync's connectivity tools. Seamlessly connect, share, and collaborate across devices.</div>
+            <div class="app-buttons">
+                <button class="btn btn-download disabled" data-app="sparksync" data-store-link="#">
+                    <span class="locked-icon">🔒</span> Download
+                </button>
+                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-image">🚕</div>
+            <div class="app-name">EaziHail</div>
+            <div class="app-description">Hail rides with ease using EaziHail's platform. Quick, reliable, and convenient transportation at your fingertips.</div>
+            <div class="app-buttons">
+                <button class="btn btn-download disabled" data-app="eazihail" data-store-link="#">
+                    <span class="locked-icon">🔒</span> Download
+                </button>
+                <a href="#" class="btn btn-website" target="_blank">🌐 Website</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Developed with ❤️ by <a href="#" target="_blank">Tumelo P</a></p>
+        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">© 2024 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const GROUP_URL = 'https://groups.google.com/g/playstoreearningapps';
+        let registrationAttempted = false;
+
+        // Check registration status on page load
+        window.addEventListener('DOMContentLoaded', checkRegistrationStatus);
+
+        function checkRegistrationStatus() {
+            const registered = localStorage.getItem('playstore_registered');
+            const userEmail = localStorage.getItem('playstore_email');
+            
+            if (registered === 'true' && userEmail) {
+                unlockApps();
+                document.getElementById('emailInput').value = userEmail;
+                document.getElementById('submitBtn').textContent = 'Registered ✓';
+                document.getElementById('submitBtn').style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+                showStatus(`✅ You're registered with ${userEmail}. Apps are ready to download!`, 'success');
+            }
+        }
+
+        document.getElementById('emailForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('emailInput').value.trim();
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (!email || !email.includes('@')) {
+                showStatus('❌ Please enter a valid email address', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            registrationAttempted = true;
+
+            // Simulate registration process
+            showStatus('📧 Processing your registration...', 'info');
+
+            setTimeout(() => {
+                // Store registration in localStorage
+                localStorage.setItem('playstore_registered', 'true');
+                localStorage.setItem('playstore_email', email);
+                localStorage.setItem('registration_date', new Date().toISOString());
+
+                showStatus('✅ Registration successful! Opening Google Group...', 'success');
+                
+                submitBtn.textContent = 'Registered ✓';
+                submitBtn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+                
+                unlockApps();
+
+                // Open Google Group
+                setTimeout(() => {
+                    window.open(GROUP_URL, '_blank');
+                    showStatus(`🎉 Success! Join the Google Group with ${email} to complete registration. Then download apps below!`, 'info');
+                }, 1500);
+                
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        function unlockApps() {
+            const downloadBtns = document.querySelectorAll('.btn-download');
+            downloadBtns.forEach(btn => {
+                btn.classList.remove('disabled');
+                btn.innerHTML = '⬇️ Download';
+                
+                // Add click handler
+                btn.addEventListener('click', function() {
+                    const appName = this.getAttribute('data-app');
+                    const storeLink = this.getAttribute('data-store-link');
+                    const userEmail = localStorage.getItem('playstore_email');
+                    
+                    if (storeLink && storeLink !== '#') {
+                        // Open actual Play Store link
+                        window.open(storeLink, '_blank');
+                        showStatus(`📱 Opening Play Store for ${appName}...`, 'info');
+                    } else {
+                        // Fallback message
+                        showStatus(`⚠️ Play Store link coming soon! Make sure you've joined the Google Group with ${userEmail}`, 'info');
+                    }
+                });
+            });
+        }
+
+        function showStatus(message, type) {
+            const statusMsg = document.getElementById('statusMessage');
+            statusMsg.textContent = message;
+            statusMsg.className = `status-message ${type}`;
+            
+            // Auto-hide non-critical messages after 7 seconds
+            if (type === 'error') {
+                setTimeout(() => {
+                    if (statusMsg.classList.contains('error')) {
+                        statusMsg.style.display = 'none';
+                    }
+                }, 7000);
+            }
+        }
+
+        // Clear registration (for testing - remove in production)
+        // localStorage.clear();
+    </script>
+</body>
+</html>
