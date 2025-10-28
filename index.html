@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Early Access Apps - Join & Download</title>
+    <title>Batau Software Dev - Early Access Apps</title>
     <style>
         * {
             margin: 0;
@@ -13,10 +13,48 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #5B6FD8 0%, #7B68D6 30%, #9B6FCE 60%, #B87AC2 100%);
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 30%, #2a3550 60%, #1e2538 100%);
             min-height: 100vh;
             color: #fff;
             overflow-x: hidden;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(135, 206, 250, 0.1);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.6s ease;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(87, 144, 255, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .business-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #87CEEB 0%, #5790FF 50%, #8B7BE8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero {
@@ -34,7 +72,7 @@
             width: 120px;
             height: 120px;
             border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(87, 144, 255, 0.5);
             animation: float 3s ease-in-out infinite;
         }
 
@@ -42,25 +80,29 @@
             font-size: 3rem;
             margin-bottom: 20px;
             animation: fadeInDown 1s ease 0.2s both;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            text-shadow: 0 0 20px rgba(135, 206, 250, 0.5);
+            background: linear-gradient(135deg, #87CEEB 0%, #fff 50%, #8B7BE8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 30px;
             animation: fadeInUp 1s ease 0.3s both;
-            opacity: 0.95;
+            color: #87CEEB;
         }
 
         .registration-section {
             max-width: 600px;
             margin: 0 auto 60px;
             padding: 35px;
-            background: rgba(91, 111, 216, 0.25);
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.9) 0%, rgba(42, 53, 80, 0.9) 100%);
             backdrop-filter: blur(20px);
             border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(135, 206, 250, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             animation: scaleIn 0.8s ease 0.4s both;
         }
 
@@ -68,13 +110,21 @@
             font-size: 1.8rem;
             margin-bottom: 15px;
             text-align: center;
+            background: linear-gradient(135deg, #87CEEB 0%, #5790FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .registration-section p {
             text-align: center;
             margin-bottom: 25px;
-            opacity: 0.9;
+            color: #87CEEB;
             line-height: 1.6;
+        }
+
+        .registration-section small {
+            color: #6B8EA8;
         }
 
         .email-form {
@@ -86,37 +136,42 @@
         .email-form input {
             flex: 1;
             padding: 16px 20px;
-            border: none;
+            border: 2px solid rgba(135, 206, 250, 0.3);
             border-radius: 15px;
             font-size: 1rem;
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
             transition: all 0.3s ease;
+        }
+
+        .email-form input::placeholder {
+            color: #6B8EA8;
         }
 
         .email-form input:focus {
             outline: none;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #87CEEB;
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 20px rgba(135, 206, 250, 0.3);
         }
 
         .email-form button {
             padding: 16px 35px;
             border: none;
             border-radius: 15px;
-            background: linear-gradient(135deg, #6B7FE8 0%, #8B6FE0 100%);
+            background: linear-gradient(135deg, #5790FF 0%, #8B7BE8 100%);
             color: #fff;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(107, 127, 232, 0.4);
+            box-shadow: 0 5px 20px rgba(87, 144, 255, 0.4);
         }
 
         .email-form button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(107, 127, 232, 0.5);
+            box-shadow: 0 8px 25px rgba(87, 144, 255, 0.6);
         }
 
         .email-form button:disabled {
@@ -132,20 +187,27 @@
             display: none;
             animation: slideDown 0.3s ease;
             font-size: 0.95rem;
+            border: 1px solid;
         }
 
         .status-message.success {
-            background: rgba(76, 175, 80, 0.9);
+            background: rgba(76, 175, 80, 0.2);
+            border-color: rgba(76, 175, 80, 0.5);
+            color: #4CAF50;
             display: block;
         }
 
         .status-message.error {
-            background: rgba(244, 67, 54, 0.9);
+            background: rgba(244, 67, 54, 0.2);
+            border-color: rgba(244, 67, 54, 0.5);
+            color: #f44336;
             display: block;
         }
 
         .status-message.info {
-            background: rgba(91, 111, 216, 0.9);
+            background: rgba(135, 206, 250, 0.2);
+            border-color: rgba(135, 206, 250, 0.5);
+            color: #87CEEB;
             display: block;
         }
 
@@ -159,12 +221,12 @@
         }
 
         .app-card {
-            background: rgba(91, 111, 216, 0.25);
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.9) 0%, rgba(42, 53, 80, 0.9) 100%);
             backdrop-filter: blur(20px);
             border-radius: 25px;
             padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(135, 206, 250, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             transition: all 0.4s ease;
             animation: fadeInUp 0.6s ease both;
             opacity: 0;
@@ -179,13 +241,14 @@
 
         .app-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 50px rgba(87, 144, 255, 0.4);
+            border-color: rgba(135, 206, 250, 0.4);
         }
 
         .app-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #6B7FE8 0%, #8B6FE0 50%, #AB70D8 100%);
+            background: linear-gradient(135deg, #1a1f3a 0%, #2a3550 50%, #3a4560 100%);
             border-radius: 20px;
             margin-bottom: 25px;
             display: flex;
@@ -194,7 +257,8 @@
             font-size: 4rem;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(135, 206, 250, 0.2);
         }
 
         .app-image::before {
@@ -202,7 +266,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(135, 206, 250, 0.1) 50%, transparent 70%);
             animation: shimmer 3s infinite;
         }
 
@@ -210,12 +274,16 @@
             font-size: 1.6rem;
             font-weight: bold;
             margin-bottom: 12px;
+            background: linear-gradient(135deg, #87CEEB 0%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .app-description {
             font-size: 0.95rem;
             margin-bottom: 25px;
-            opacity: 0.9;
+            color: #87CEEB;
             line-height: 1.6;
         }
 
@@ -242,37 +310,39 @@
         }
 
         .btn-download {
-            background: linear-gradient(135deg, #6B7FE8 0%, #8B6FE0 100%);
+            background: linear-gradient(135deg, #5790FF 0%, #8B7BE8 100%);
             color: #fff;
-            box-shadow: 0 5px 15px rgba(107, 127, 232, 0.3);
+            box-shadow: 0 5px 15px rgba(87, 144, 255, 0.4);
         }
 
         .btn-download:hover:not(.disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(107, 127, 232, 0.5);
+            box-shadow: 0 8px 25px rgba(87, 144, 255, 0.6);
         }
 
         .btn-download.disabled {
-            background: rgba(139, 111, 224, 0.5);
+            background: linear-gradient(135deg, #2a3550 0%, #1a1f3a 100%);
             cursor: not-allowed;
             opacity: 0.6;
+            border: 1px solid rgba(135, 206, 250, 0.3);
         }
 
         .btn-download.disabled:hover {
             transform: none;
-            box-shadow: 0 5px 15px rgba(107, 127, 232, 0.3);
+            box-shadow: 0 5px 15px rgba(87, 144, 255, 0.4);
         }
 
         .btn-website {
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(135, 206, 250, 0.1);
+            color: #87CEEB;
+            border: 2px solid rgba(135, 206, 250, 0.3);
         }
 
         .btn-website:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(135, 206, 250, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 20px rgba(135, 206, 250, 0.3);
+            border-color: #87CEEB;
         }
 
         .locked-icon {
@@ -282,24 +352,25 @@
         footer {
             text-align: center;
             padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(10, 14, 39, 0.8);
             margin-top: 40px;
+            border-top: 1px solid rgba(135, 206, 250, 0.1);
         }
 
         footer p {
             font-size: 1rem;
-            opacity: 0.9;
+            color: #87CEEB;
         }
 
         footer a {
-            color: #fff;
+            color: #5790FF;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
         }
 
         footer a:hover {
-            opacity: 0.8;
+            color: #87CEEB;
             text-decoration: underline;
         }
 
@@ -344,11 +415,11 @@
         @keyframes slideDown {
             from {
                 opacity: 0;
-                max-height: 0;
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
-                max-height: 100px;
+                transform: translateY(0);
             }
         }
 
@@ -358,6 +429,19 @@
         }
 
         @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .header-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .business-name {
+                font-size: 1.1rem;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -386,6 +470,13 @@
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="header-left">
+            <img src="https://drive.google.com/uc?export=view&id=1hD8uMlB8Bcf8dFmRbaHp6rNPQIkvS7us" alt="Batau Software Dev" class="header-icon" onerror="this.style.display='none'">
+            <div class="business-name">Batau Software Dev</div>
+        </div>
+    </header>
+
     <div class="hero">
         <div class="logo-container">
             <img src="https://drive.google.com/uc?export=view&id=1hD8uMlB8Bcf8dFmRbaHp6rNPQIkvS7us" alt="Logo" class="logo" onerror="this.style.display='none'">
@@ -481,12 +572,11 @@
 
     <footer>
         <p>Developed with ❤️ by <a href="#" target="_blank">Tumelo P</a></p>
-        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">© 2024 All Rights Reserved</p>
+        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">© 2024 Batau Software Dev • All Rights Reserved</p>
     </footer>
 
     <script>
         const GROUP_URL = 'https://groups.google.com/g/playstoreearningapps';
-        let registrationAttempted = false;
 
         // Check registration status on page load
         window.addEventListener('DOMContentLoaded', checkRegistrationStatus);
@@ -516,76 +606,4 @@
             }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Processing...';
-            registrationAttempted = true;
-
-            // Simulate registration process
-            showStatus('📧 Processing your registration...', 'info');
-
-            setTimeout(() => {
-                // Store registration in localStorage
-                localStorage.setItem('playstore_registered', 'true');
-                localStorage.setItem('playstore_email', email);
-                localStorage.setItem('registration_date', new Date().toISOString());
-
-                showStatus('✅ Registration successful! Opening Google Group...', 'success');
-                
-                submitBtn.textContent = 'Registered ✓';
-                submitBtn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
-                
-                unlockApps();
-
-                // Open Google Group
-                setTimeout(() => {
-                    window.open(GROUP_URL, '_blank');
-                    showStatus(`🎉 Success! Join the Google Group with ${email} to complete registration. Then download apps below!`, 'info');
-                }, 1500);
-                
-                submitBtn.disabled = false;
-            }, 2000);
-        });
-
-        function unlockApps() {
-            const downloadBtns = document.querySelectorAll('.btn-download');
-            downloadBtns.forEach(btn => {
-                btn.classList.remove('disabled');
-                btn.innerHTML = '⬇️ Download';
-                
-                // Add click handler
-                btn.addEventListener('click', function() {
-                    const appName = this.getAttribute('data-app');
-                    const storeLink = this.getAttribute('data-store-link');
-                    const userEmail = localStorage.getItem('playstore_email');
-                    
-                    if (storeLink && storeLink !== '#') {
-                        // Open actual Play Store link
-                        window.open(storeLink, '_blank');
-                        showStatus(`📱 Opening Play Store for ${appName}...`, 'info');
-                    } else {
-                        // Fallback message
-                        showStatus(`⚠️ Play Store link coming soon! Make sure you've joined the Google Group with ${userEmail}`, 'info');
-                    }
-                });
-            });
-        }
-
-        function showStatus(message, type) {
-            const statusMsg = document.getElementById('statusMessage');
-            statusMsg.textContent = message;
-            statusMsg.className = `status-message ${type}`;
-            
-            // Auto-hide non-critical messages after 7 seconds
-            if (type === 'error') {
-                setTimeout(() => {
-                    if (statusMsg.classList.contains('error')) {
-                        statusMsg.style.display = 'none';
-                    }
-                }, 7000);
-            }
-        }
-
-        // Clear registration (for testing - remove in production)
-        // localStorage.clear();
-    </script>
-</body>
-</html>
+            submitBtn.textCo
